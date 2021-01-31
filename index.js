@@ -29,6 +29,16 @@ let books = [
 let delete_button = document.createElement("button");
 delete_button.setAttribute("id", "delete");
 delete_button.setAttribute("onClick", "deleteBook(this)");
+
+/* Generates Save Button  */
+let save_button = document.createElement("button");
+save_button.setAttribute("id", "save");
+save_button.setAttribute("onClick", "saveBook()");
+save_button.appendChild(document.createTextNode("GUARDAR (SAVE)"));
+
+/* Inserts Save Button in DOM  */
+document.getElementById("books_form").appendChild(save_button);
+
 /* CRUD Methods */
 /* Fetches Hard-coded books  */
 const fetchBooks = (books_list) => {
@@ -91,6 +101,43 @@ const deleteBook = (element) => {
     (book) => book.id !== selected_book_id
   );
   fetchBooks(filtered_books_list);
+};
+
+// Updates Book
+const updateBook = (book_id, new_book_content) => {
+  console.log(document.getElementById("books_form").childNodes);
+};
+
+// Creates Book
+const createBook = (new_book_content) => {
+  let last_consecutive_book_id = books.slice(-1)[0].id;
+  console.log(last_consecutive_book_id);
+  if (last_consecutive_book_id === undefined) {
+    last_consecutive_book_id = 0;
+  }
+  new_book_content.id = last_consecutive_book_id + 1;
+  books.push(new_book_content);
+};
+
+// Save Book Action (updates or creates depending on update checkbox)
+
+const saveBook = () => {
+  let update_book = document.getElementById("update_book").checked;
+  let new_book = {
+    id: undefined,
+    name: document.getElementById("name").value,
+    author: document.getElementById("author").value,
+    genre: document.getElementById("genre").value,
+    no_copyright: document.getElementById("no_copyright").checked,
+    publisher: document.getElementById("publisher").value,
+  };
+  update_book
+    ? updateBook(
+        parseInt(document.getElementById("book_id").innerText),
+        new_book
+      )
+    : createBook(new_book);
+  fetchBooks(books);
 };
 
 // Init

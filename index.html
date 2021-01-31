@@ -7,45 +7,32 @@
   </head>
   <body>
     <h3>Books (Libros)</h3>
-    <div>
-      <form id="books-form" action="" method="post">
-        <!--  Update Book? ~> If checked, book will be updated -->
-        <label for="copyright">Update Book? (Actualizar Libro?)</label>
-        <input type="checkbox" name="copyright" id="copyright" />
+    <div id="books_form">
+      <!--  Update Book? ~> If checked, book will be updated -->
+      <label for="update_book">Update Book? (Actualizar Libro?)</label>
+      <input type="checkbox" name="update_book" id="update_book" />
 
-        <label for="copyright">No Copyright? (Sin Copyright?)</label>
-        <input type="checkbox" name="copyright" id="copyright" />
+      <label for="copyright">No Copyright? (Sin Copyright?)</label>
+      <input type="checkbox" name="no_copyright" id="no_copyright" />
 
-        <label for="name">Name (Libro)</label>
-        <input type="text" name="name" id="name" placeholder="Ice Palace" />
+      <label for="name">Name (Libro)</label>
+      <input type="text" name="name" id="name" placeholder="Ice Palace" />
 
-        <label for="genre">Genre (Genero)</label>
-        <select name="genre" id="genre">
-          <option value="" disabled selected hidden>Genre...</option>
-          <option value="tragic">Tragic (Tragedia)</option>
-          <option value="romance">Romance (Romance)</option>
-          <option value="thriller">Thriller (Suspenso)</option>
-          <option value="comedy">Comedy (Comedia)</option>
-          <option value="self-help">Self-Help (Auto-ayuda)</option>
-        </select>
+      <label for="genre">Genre (Genero)</label>
+      <select name="genre" id="genre">
+        <option value="" disabled selected hidden>Genre...</option>
+        <option value="tragic">Tragic (Tragedia)</option>
+        <option value="romance">Romance (Romance)</option>
+        <option value="thriller">Thriller (Suspenso)</option>
+        <option value="comedy">Comedy (Comedia)</option>
+        <option value="self-help">Self-Help (Auto-ayuda)</option>
+      </select>
 
-        <label for="author">Author (Autor)</label>
-        <input
-          type="text"
-          name="author"
-          id="author"
-          placeholder="Albert Camus"
-        />
+      <label for="author">Author (Autor)</label>
+      <input type="text" name="author" id="author" placeholder="Albert Camus" />
 
-        <label for="publisher">Publisher (Casa Publicadora)</label>
-        <input
-          type="text"
-          name="publisher"
-          id="publisher"
-          placeholder="Stalag"
-        />
-        <input type="submit" value="Guardar" />
-      </form>
+      <label for="publisher">Publisher (Casa Publicadora)</label>
+      <input type="text" name="publisher" id="publisher" placeholder="Stalag" />
     </div>
     <!-- Source CRUD Logic  -->
     <script src="./index.js" charset="utf-8"></script>
