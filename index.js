@@ -105,13 +105,31 @@ const deleteBook = (element) => {
 
 // Updates Book
 const updateBook = (book_id, new_book_content) => {
-  console.log(document.getElementById("books_form").childNodes);
+  // Returns if books array is empty
+  if (!books.length) {
+    return;
+  }
+  new_book_content.id = book_id;
+  let selected_book_index = books.findIndex((book) => book.id === book_id);
+  // Returns if books does not contain book with such book id. Else, update book based on selected book index
+  if (selected_book_index === -1) {
+    return books;
+  }
+  // Copy of books, with updated element
+  let updated_books = [
+    ...books.slice(0, selected_book_index),
+    { ...books[selected_book_index], ...new_book_content },
+    ...books.slice(selected_book_index + 1),
+  ];
+  return updated_books;
 };
 
 // Creates Book
 const createBook = (new_book_content) => {
   new_book_content.id = !books.length ? 0 : books.slice(-1)[0].id + 1;
-  books.push(new_book_content);
+	// Copies books array, inserts new book and returns new array to retain inmutability
+  updated_books = [...books, new_book_content];
+  return updated_books;
 };
 
 // Save Book Action (updates or creates depending on update checkbox)
@@ -126,13 +144,9 @@ const saveBook = () => {
     no_copyright: document.getElementById("no_copyright").checked,
     publisher: document.getElementById("publisher").value,
   };
-  update_book
-    ? updateBook(
-        parseInt(document.getElementById("book_id").innerText),
-        new_book
-      )
-    : createBook(new_book);
-  fetchBooks(books);
+  let book_id = parseInt(document.getElementById("book_id").value);
+  new_books = update_book ? updateBook(book_id, new_book) : createBook(new_book);
+  fetchBooks(new_books);
 };
 
 // Init
