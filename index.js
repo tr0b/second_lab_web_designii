@@ -110,12 +110,7 @@ const updateBook = (book_id, new_book_content) => {
 
 // Creates Book
 const createBook = (new_book_content) => {
-  let last_consecutive_book_id = books.slice(-1)[0].id;
-  console.log(last_consecutive_book_id);
-  if (last_consecutive_book_id === undefined) {
-    last_consecutive_book_id = 0;
-  }
-  new_book_content.id = last_consecutive_book_id + 1;
+  new_book_content.id = !books.length ? 0 : books.slice(-1)[0].id + 1;
   books.push(new_book_content);
 };
 
